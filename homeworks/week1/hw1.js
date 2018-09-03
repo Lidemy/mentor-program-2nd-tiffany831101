@@ -1,8 +1,7 @@
 function printStars(n) {
 var str = ""; 
-var newnum = (n+1)*n/2; 
-for(var i=1;i<=newnum;i++){    
-if(i!==newnum){
+for(var i=0;i<n;i++){    
+if(i!==n-1){
 	str+= "*"    
 	str+="\n";   
 }
