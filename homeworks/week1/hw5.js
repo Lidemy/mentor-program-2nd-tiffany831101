@@ -11,11 +11,11 @@ function join(str, concatStr) {
     return newstr;
 }
 
+
 function repeat(str, times) {
     var newstr = "";
     for (var i = 0; i < times; i++) {
         newstr += str;
-
     }
     return newstr;
 }
