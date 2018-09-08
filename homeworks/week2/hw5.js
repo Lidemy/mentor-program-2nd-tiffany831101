@@ -3,7 +3,7 @@ function add(a,b){
 	var array2 = b.split("");    
 	var array3 = [];    
 	if(array1.length==1){       
-		console.log(Number(a)+Number(b)+"");    
+		return Number(a)+Number(b)+"";    
 	}else{
 		for(var i=array1.length-1;i>=0;i--){    
 			var num = Number(array1[i])+Number(array2[i]);       
@@ -17,7 +17,7 @@ function add(a,b){
 				array3.push(num%10);      
 			}    
 		}    
-		console.log(array3.reverse().join(""));  
+		return array3.reverse().join("");  
 	}      
 }
 
