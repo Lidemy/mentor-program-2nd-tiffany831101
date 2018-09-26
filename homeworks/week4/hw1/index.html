@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #container {
+            width: 300px;
+            background-color: #324040;
+            margin: 50px auto;
+            position: relative;
+            padding: 25px;
+            box-sizing: border-box;
+            height: 350px;
+            border-radius: 4px;
+        }
+
+        .showNumber {
+            width: 250px;
+            height: 50px;
+            background-color: #abb5ad;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            text-align: right;
+            font-size: 30px;
+            line-height: 50px;
+        }
+
+        #numberCol {
+            width: 100%;
+            height: 220px;
+            background-color: #d1d8d0;
+            border-radius: 4px;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        .number {
+            width: 40px;
+            display: inline-block;
+            background-color: #485d5e;
+            height: 40px;
+            margin-left: 10px;
+            margin-top: 10px;
+            color: white;
+            line-height: 40px;
+            border-radius: 2px;
+            text-align: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .clear {
+            width: 40px;
+            display: inline-block;
+            background-color: #dd4d3f;
+            height: 40px;
+            margin-left: 10px;
+            margin-top: 10px;
+            color: white;
+            line-height: 40px;
+            border-radius: 2px;
+            text-align: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .equal {
+            width: 40px;
+            display: inline-block;
+            background-color: #485d5e;
+            height: 40px;
+            margin-left: 10px;
+            margin-top: 10px;
+            color: white;
+            line-height: 40px;
+            border-radius: 2px;
+            text-align: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .operator {
+            width: 50px;
+            display: inline-block;
+            background-color: #b5a898;
+            height: 40px;
+            margin-left: 15px;
+            margin-top: 10px;
+            color: white;
+            line-height: 40px;
+            border-radius: 2px;
+            text-align: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="showNumber">
+        </div>
+        <div id="numberCol">
+            <div class="number" type="button">1</div>
+            <div class="number" type="button">2</div>
+            <div class="number" type="button">3</div>
+            <div class="operator" onclick="add()">+</div>
+            <div class="number" type="button">4</div>
+            <div class="number" type="button">5</div>
+            <div class="number" type="button">6</div>
+            <div class="operator" onclick="minus()">-</div>
+            <div class="number" type="button">7</div>
+            <div class="number" type="button">8</div>
+            <div class="number" type="button">9</div>
+            <div class="operator" onclick="times()">&times;</div>
+            <div class="number" type="button">0</div>
+            <div class="clear" onclick="clearAll()">AC</div>
+            <div class="equal" onclick="equal()">=</div>
+            <div class="operator" onclick="devide()">&divide;</div>
+        </div>
+    </div>
+    <script>
+        var showNumber = document.getElementsByClassName("showNumber")[0];
+        var numberList = document.getElementsByClassName("number");
+        var operatorList = document.getElementsByClassName("operator");
+        var clearbtn = document.getElementsByClassName("clear");
+        console.log(clearbtn);
+        var array = [];
+        var array1 = [];
+        var countNum = ""
+        //設定數字按鈕
+        for (let i = 0; i < 10; i++) {
+            numberList[i].onclick = function click() {
+                countNum += this.innerHTML;
+                showNumber.innerHTML = countNum;
+                array.push(countNum[countNum.length - 1]);
+                console.log(array.join(""));
+                if (onclick) {
+                    add();
+                }
+                if (onclick) {
+                    equal();
+                }
+                if (onclick) {
+                    minus();
+                }
+                if (onclick) {
+                    times();
+                }
+                if (onclick) {
+                    devide();
+                }
+            }
+
+
+        }
+        //設定等於事件(會用eval函數把字串相加起來)
+        function equal() {
+            console.log(eval(array.join("")));
+            showNumber.innerHTML = eval(array.join("")) + "";
+
+        }
+        //設定加法的事件(會讓螢幕變成新的數字)
+        function add() {
+            countNum = "";
+            array.push("+");
+        }
+        //設定減法事件
+        function minus() {
+            countNum = "";
+            array.push("-");
+        }
+        //設定乘法事件
+        function times() {
+            countNum = "";
+            array.push("*");
+        }
+
+        function devide() {
+            countNum = "";
+            array.push("/");
+        }
+
+        //設定清除按鈕
+        function clearAll() {
+            showNumber.innerHTML = "";
+            countNum = "";
+            array = [];
+        }
+    </script>
+</body>
+
+</html>
