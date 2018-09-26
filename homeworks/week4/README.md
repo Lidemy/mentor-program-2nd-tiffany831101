@@ -71,10 +71,29 @@ element.show() // 顯示
 ## hw5：簡答題
 
 1. 什麼是 DOM？
+document object model，可以看成是javascript跟html的元素的接口，讓js可以去操作html裡面的元素，<html>標籤裡面包含了head跟body，body之中則由很多父子元素構成，每一個元素可以視為一個節點。
+
 2. 什麼是 Ajax？
+Asynchronous JavaScript and XML，可以透過javascript的方式藉由api拿到資料，並且透過不跳轉頁面的方式，首先先創建一個XMLHttpRequest的請求訊息，再將需要的接口api訊息寫在open之中，再將send出去連接到端口，以獲取資料。
+
 3. HTTP method 有哪幾個？有什麼不一樣？
+發現網上有一個很有趣的說法解釋不同的method
+get:就像是在餐廳點餐時，要求服務生把餐廳的菜單拿過來，以獲取資料為目的
+post:就像是要跟餐廳的服務生點餐，例如把註冊資料送出去之後，去跟資料庫的資料核對註冊成功與否，就像服務生跟你說今天是不是還有這道菜
+delete:刪除你剛剛點的東西，把資料刪除
+put:想要重新點餐一次，所以如果新增一筆資料，會把剛剛的資料覆蓋上去
+patch:附加新的資料在已經存在的資料後面，就像你點完主餐還想繼續加點飲料甜點
+head:只會取得HTTP header的資料
 4. `GET` 跟 `POST` 有哪些區別，可以試著舉幾個例子嗎？
+有查到一個很有趣的比喻，get就像是寫明信片一樣，把住址、收件人等等的(header)跟信件內容都寫在明信片上，get的方式也沒有body，只有header
+所以在網址上面可以看到很多的問號，後面會接你要找的內容，所以如果是具有安全性的問題，就不建議用get的方式(例如密碼)
+用post的方式就像是有信封包起來的信件，header就是信封的部分，body就是信件內文，你無法單從網址就看到送出的資料為何，
+
 5. 什麼是 RESTful API？
+Representational(JSON,XML...) State Transfer(狀態轉化：GET POST...methods)，是一種網路架構風格，善用http的這些動詞，來相對應資料庫的增刪改查crud，以便可以更簡潔直觀的去看uri，達到對資源的操作
 6. JSON 是什麼？
+全名是Javascript Object Notation，是一種輕量級的資料交換的格式，其中name跟value會成對存在，並且用逗號隔開，物件的話會用{}，陣列的話則會用[]。
 7. JSONP 是什麼？
+JSON with padding，用一個回乎函式的方式來取得JSON的資料
 8. 要如何存取跨網域的 API？
+可以用script標籤包起來的方式，scr跨域的網址，後面接一個callback function，那個function就可以獲取到這個跨域的資料
