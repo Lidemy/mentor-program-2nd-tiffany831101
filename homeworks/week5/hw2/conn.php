@@ -2,8 +2,8 @@
 //建立與資料庫之間的連結，用new mysqli()的方式
 $servername = "166.62.28.131";
 $username = "student2nd";
-$password = "mentorstudent123";
-$dbname = "mentor_program_db";
+$password = "";
+$dbname = "";
 $cmmts_table = "tiffanyhsu_comments";
 $users_table = "tiffanyhsu_users";
 $conn = new mysqli($servername, $username, $password, $dbname);
