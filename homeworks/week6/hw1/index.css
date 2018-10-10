@@ -1,0 +1,185 @@
+.container {
+	width: 100%;
+	margin: 0 auto;
+	/* background-color: red; */
+}
+
+* {
+	font-family: "微軟正黑體";
+}
+
+
+.mainInput {
+	margin: 0 auto;
+	width: 500px;
+	background-color: #f2f5f7;
+	padding: 20px;
+	position: relative;
+}
+
+input.nickname {
+	display: block;
+	border-radius: 1px;
+	border: 1px solid lightgray;
+	height: 20px;
+	margin-top: 5px;
+}
+
+textarea.content {
+	display: block;
+	border-radius: 3px;
+	margin-top: 10px;
+	border: 1px solid lightgray;
+}
+
+input[type=submit] {
+	background-color: #00a0e9;
+	color: white;
+	border-style: none;
+	border-radius: 4px;
+	width: 80px;
+	height: 30px;
+	margin-top: 10px;
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+input[type=submit]:hover {
+	background-color: #82d7ff;
+}
+
+.mainMessage {
+	width: 500px;
+	background-color: white;
+	margin: 0 auto;
+	padding: 20px;
+	margin-top: 20px;
+	position: relative;
+	border: 1px solid #f2f5f7;
+}
+
+div.nickname {
+	width: 40%;
+	display: block;
+}
+
+div.nickname a {
+	position: absolute;
+	right: 20px;
+	text-decoration: none;
+	color: #00a0e9;
+	transition: 0.3s;
+}
+
+div.nickname a:hover {
+	color: #82d7ff;
+	transform: scale(1.2);
+}
+
+div.time {
+	width: 50%;
+	display: inline-block;
+	/* color: red;
+	background-color: yellow; */
+	font-size: 12px;
+
+}
+
+div.content {
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+}
+
+hr {
+	size: 1px;
+	width: 100%;
+}
+
+div.sub-cmmt {
+	background-color: #f2f5f7;
+	box-sizing: border-box;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+.box-collapse {
+	color: #00a0e9;
+	cursor: pointer;
+}
+
+.logoutBtn {
+
+	text-decoration: none;
+	color: #00a0e9;
+	transition: 0.3s;
+}
+
+.logoutBtn:hover {
+	color: #82d7ff;
+	transform: scale(1.2);
+}
+
+.pagenums {
+	width: 200px;
+	text-align: center;
+	margin: 50px auto;
+	color: gray;
+
+	/* background-color: red; */
+}
+
+.pagenums a {
+	text-decoration: none;
+	color: #00a0e9;
+}
+
+.warn_login {
+	color: #00a0e9;
+	cursor: pointer;
+
+	transition: 0.3s;
+}
+
+.remindLogin {
+	background-color: #00a0e9;
+	border-style: none;
+	border-radius: 4px;
+	height: 40px;
+	width: 60px;
+	margin: 0 auto;
+	color: white;
+	float: right;
+	transition: 0.3s;
+	margin-right: 10px;
+}
+
+.remindLogin:hover {
+	background-color: #82d7ff;
+}
+
+
+.edit_delete {
+	display: inline-block;
+	float: right;
+	color: gray;
+	top: 30px;
+	cursor: pointer;
+}
+
+
+.cmmt__edit {
+	margin-right: 20px;
+}
+
+.addColor {
+	background-color: #d1effd !important;
+}
+
+.cmmt__id {
+	display: none;
+}
+
+.areaEdit {
+	width: 250px;
+	height: 150px;
+}
