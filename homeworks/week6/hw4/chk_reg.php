@@ -1,7 +1,7 @@
 <?php
 //這邊要寫的是從資料庫抓來的東西有沒有根輸入的值相同
 require('conn.php');
-
+require('./certificate.php');
 $passwordHash = password_hash(
        $_POST['password'],
        PASSWORD_DEFAULT,
@@ -10,7 +10,7 @@ $passwordHash = password_hash(
     if ($passwordHash === false) {
         throw new Exception('Password hash failed');
     }
-$chk_stmt = $conn->prepare("SELECT username, nickname FROM users WHERE username=:username OR nickname=:nickname");
+$chk_stmt = $conn->prepare("SELECT username, nickname FROM tiffanyhsu_users WHERE username=:username OR nickname=:nickname");
 $chk_stmt->bindParam(':username',$_POST['username']);
 $chk_stmt->bindParam(':nickname',$_POST['nickname']);
 // $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -25,14 +25,16 @@ if( $chk_stmt->rowCount()==0){
 		':password' => $passwordHash,
 		':nickname' => $_POST['nickname']
 	];
-	if( $reg_stmt->execute($param) ){
-		setcookie('user_id', $conn->lastInsertId(), time()+3600*24);
+	if( $reg_stmt->execute($param)){
+		$certificate_num = make_certificate($conn->lastInsertId(), $conn);
+		setCookie('certificate',$certificate_num,time()+3600*24);
+		// setcookie('user_id', $conn->lastInsertId(), time()+3600*24);
 		exit("ok");
 	}
 }else{
 	while($chk_row = $chk_stmt->fetch()){
 
-		if( !strcasecmp( $chk_row['username'], $_POST['username'] ) AND !strcasecmp( $chk_row['nickname'], $_POST['nickname'] ) ){
+		if(!strcasecmp( $chk_row['username'], $_POST['username']) AND !strcasecmp( $chk_row['nickname'], $_POST['nickname'] ) ){
 			exit('both_err');
 			//重複的帳號暱稱在同一列
 		}else if( !strcasecmp( $chk_row['nickname'], $_POST['nickname'] ) ){

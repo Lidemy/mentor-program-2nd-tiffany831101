@@ -8,6 +8,7 @@
 //   parent id=0的也會有自己的流水號id，這個是系統幫忙排的
 //   再跑出最新的parent-id的同時，把內部的子留言依照時間做排序
 //   這樣就算跑完一整個父留言框(裡面同時也包含子留言框+輸入框)
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,42 +28,48 @@
     //有測試過這邊是有聯上的，代表引入成功，可以最後再把順利成功拿掉
     require("./conn.php");
     //如果沒有設置cookie的話
-    if( !isset($_COOKIE['user_id']) ){
+    $login_user_id = 0;
+    // var_dump(isset($_SESSION['user_id']));
+    if(isset($_COOKIE['certificate'])){
+    $nickname_stmt = $conn->prepare("SELECT id, nickname FROM $users_table AS user INNER JOIN $certificates_table ".
+							"ON certificate = :certificate AND id = user_id");
+	$nickname_stmt->bindParam(':certificate', $_COOKIE['certificate']);
+	$nickname_stmt->execute();
+	$nickname_stmt->setFetchMode(PDO::FETCH_ASSOC);
+	//certificate比對正確，顯示撰寫留言框
+	        if( $nickname_stmt->rowCount() === 1){
+		    $nickname_row = $nickname_stmt->fetch();
+		    $login_user_id = $nickname_row['id'];
     ?>
-    <input class="remindLogin" type="button" value="登入" onclick="location.href='login.php'" />
-    <?php
-    }else{
-        //因為在前面有設置cookie的user_id是users資料表的id(在login跟reg都有設置)
-        //進行預處理
-        $nickname_stmt = $conn->prepare("SELECT nickname FROM $users_table WHERE id = :user_id");
-        //將其綁定參數與值，因為上面用冒號，所以這邊也要用冒號隔開
-        $nickname_stmt->bindParam(':user_id', $_COOKIE['user_id']);
-        //執行這件事情
-        $nickname_stmt->execute();
-        //設定取回的方式為字串陣列，又叫關聯式陣列
-        $nickname_stmt->setFetchMode(PDO::FETCH_ASSOC);
-		$nickname_row = $nickname_stmt->fetch();
-        
-    ?>   
-        <div class="mainInput">
+            <div class="mainInput">
         <!-- 代表這邊我要的方式是post到insertcomm的檔案裏面，有測試過 -->
-            <form action="./insert_comm.php" method="post">
-                <div class="nickname">
-					<?php echo $nickname_row['nickname'] ?>
-					<span><a href="logout.php">登出</a></span>
-				</div>
-                <textarea class="content" name="content" placeholder="留言內容" cols="50" rows="10" required></textarea>
-                <input type="hidden" name="parent_id" value="0"/>
-                <input type="submit" value="送 出" />
-            </form>
-        </div>
+                <form action="./insert_comm.php" method="post">
+                    <div class="nickname">
+                        <?php echo htmlspecialchars($nickname_row['nickname']) ?>
+					    <span><a href="logout.php">登出</a></span>
+				    </div>
+                    <textarea class="content" name="content" placeholder="留言內容" cols="50" rows="10" required></textarea>
+                    <input type="hidden" name="parent_id" value="0"/>
+                    <input type="submit" value="送 出" />
+                </form>
+            </div>
+    <?php
+            }else{
+    
+    ?>
+            <input class="remindLogin" type="button" value="登入" onclick="location.href='login.php'" />
+    <?php
+            }
+    }else{
+    ?>
+        <input class="remindLogin" type="button" value="登入" onclick="location.href='login.php'" /> 
         <?php
     };//如果有符合這個else才會執行顯示父留言框，代表在一天之內登入過，如果超過一天的話(或使用不同的瀏覽器)，就會要再登入一次(因為有設置cookie)
         ?>
         <!-- 父留言呈現，用資料庫取出的方式 -->
         <?php
         //選出資料庫parent_id為0的做顯示
-        $pagesql = "SELECT COUNT(parent_id) AS datanum FROM comments WHERE parent_id = 0";
+        $pagesql = "SELECT COUNT(parent_id) AS datanum FROM tiffanyhsu_comments WHERE parent_id = 0";
         $pages_result = $conn->query($pagesql);
         $pages_result->setFetchMode(PDO::FETCH_ASSOC);;
         $page_row = $pages_result->fetch();
@@ -74,22 +81,22 @@
                 $page = intval($_GET["page"]); //確認頁數只能夠是數值資料
             }
             $start = ($page-1)*$perpage;
-                $parent_sql = "SELECT c.id AS cmmt_id, user_id, nickname, time, content FROM $cmmts_table AS c INNER JOIN" . 
+            $parent_sql = "SELECT c.id AS cmmt_id, user_id, nickname, time, content FROM $cmmts_table AS c INNER JOIN" . 
 						" $users_table ON parent_id = 0 AND user_id = $users_table.id ORDER BY time DESC " . 
 						"LIMIT " . ($page-1)*10 . ", 10";
-                $parent_result = $conn->query($parent_sql);
-                $parent_result->setFetchMode(PDO::FETCH_ASSOC);
+            $parent_result = $conn->query($parent_sql);
+            $parent_result->setFetchMode(PDO::FETCH_ASSOC);
                 
                     //下一筆沒有資料時會變null跳出while迴圈
                     while($parent_row = $parent_result->fetch()) {
                 ?>              
                 <div class="mainMessage">
-                    <div class="nickname"><?php echo $parent_row["nickname"]?></div>
+                    <div class="nickname"><?php echo htmlspecialchars($parent_row["nickname"])?></div>
                     
                     <div class="time"><?php echo $parent_row["time"]?></div>
                     <div class="edit_delete">
                     <?php
-                    if(isset($_COOKIE['user_id']) AND $parent_row['user_id'] === $_COOKIE['user_id']){
+                    if($parent_row['user_id'] === $login_user_id){
                         echo '<span class="cmmt__edit"><i class="fas fa-pen"></i></span><span class="cmmt__delete"><i class="fas fa-trash-alt"></i></span>';
 								}
                     ?>
@@ -97,7 +104,7 @@
                     <hr>
 
                     
-                    <div class="content"><?php echo $parent_row["content"]?></div>
+                    <div class="content"><?php echo htmlspecialchars($parent_row["content"])?></div>
                     <div class="cmmt__id"><?php echo $parent_row["cmmt_id"] ?></div>
                             <?php
                             $child_sql="SELECT c.id AS cmmt_id, user_id, nickname, time, content FROM $cmmts_table AS c INNER JOIN $users_table".
@@ -110,18 +117,18 @@
 							        else echo '<div class="sub-cmmt">';
                             ?>
                                 <!-- <div class="sub-cmmt"> -->
-                                    <div class="nickname"><?php echo $child_row["nickname"]?></div>
+                                    <div class="nickname"><?php echo htmlspecialchars($child_row["nickname"])?></div>
                                     <div class="time"><?php echo $child_row["time"]?></div>
                                     <div class="edit_delete">
                                     <?php
-                                    if(isset($_COOKIE['user_id']) AND $child_row['user_id'] === $_COOKIE['user_id']){
+                                    if( $child_row['user_id'] === $login_user_id ){
                                             echo '<span class="cmmt__edit"><i class="fas fa-pen"></i></span><span class="cmmt__delete"><i class="fas fa-trash-alt"></i></span>';
 								    }
 					                ?>
                                     </div>
                                     
                                     <hr>
-                                    <div class="content"><?php echo $child_row["content"]?></div>
+                                    <div class="content"><?php echo htmlspecialchars($child_row["content"])?></div>
                                     <div class="cmmt__id"><?php echo $child_row["cmmt_id"] ?></div>
                                 </div>
 
@@ -132,7 +139,7 @@
                     <div class="sub-cmmt">
                         <?php
                         //如果沒有設置cookie的話就顯示要他登入導回login.php
-                        if( !isset($_COOKIE['user_id']) ){
+                        if($login_user_id==0){
                         ?>
                         <a class="warn_login" onclick="location.href='login.php'">
 							登入以發表回應 
@@ -143,7 +150,7 @@
                         <div class="box-collapse">回應▶</div>
                         <!-- 把留言送去insertcomm裡面 -->
                         <form action="./insert_comm.php" method="post" style="display: none">
-                            <?php echo $nickname_row['nickname'] ?>
+                            <?php echo htmlspecialchars($nickname_row['nickname']) ?>
 					        <span><a href="logout.php" class="logoutBtn">登出</a></span>
                             <textarea class="content" name="content" placeholder="留言內容" cols="40" rows="5" required></textarea>
                             <input type="hidden" name="parent_id" value=<?php echo $parent_row['cmmt_id']?> />
