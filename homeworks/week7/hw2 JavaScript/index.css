@@ -1,0 +1,22 @@
+.widthAuto {
+    width: 80%;
+}
+
+
+@media screen and (orientation: portrait) {
+    .widthAuto {
+        width: 100%;
+    }
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+i {
+    cursor: pointer;
+}
