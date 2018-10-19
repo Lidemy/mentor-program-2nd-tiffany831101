@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+div[class^="col"] {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.row {
+    background-color: yellow;
+    margin-left: -15px;
+    margin-right: -15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container {
+    max-width: 960px;
+    background-color: blue;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.red {
+    background-color: red;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.pink {
+    background-color: pink;
+}
+
+@media only screen and (min-width: 720px) {
+    .col-1 {
+        width: calc(100%/12*1);
+    }
+
+    .col-2 {
+        width: calc(100%/12*2);
+    }
+
+    .col-3 {
+        width: calc(100%/12*3)
+    }
+
+    .col-4 {
+        width: calc(100%/12*4)
+    }
+
+    .col-5 {
+        width: calc(100%/12*5)
+    }
+
+    .col-6 {
+        width: calc(100%/12*6)
+    }
+
+    .col-7 {
+        width: calc(100%/12*7)
+    }
+
+    .col-8 {
+        width: calc(100%/12*8)
+    }
+
+    .col-9 {
+        width: calc(100%/12*9)
+    }
+
+    .col-10 {
+        width: calc(100%/12*10)
+    }
+
+    .col-11 {
+        width: calc(100%/12*11)
+    }
+
+    .col-12 {
+        width: calc(100%/12*12)
+    }
+
+}
+
+@media only screen and (max-width: 720px) {
+    div[class^="col"] {
+        width: 100%;
+    }
+}
