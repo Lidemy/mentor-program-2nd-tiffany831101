@@ -116,7 +116,11 @@ HTML 的部分就簡單帶過幾個常見的 tag，帶到 head 的一些屬性�
 
 除此之外，也會在這週講 API 串接，讓大家對什麼是 API 有基本的概念，並且實作 Ajax。
 
-延伸閱讀：[輕鬆理解 Ajax 與跨來源請求](https://blog.techbridge.cc/2017/05/20/api-ajax-cors-and-jsonp/)、[DOM 的事件傳遞機制：捕獲與冒泡](https://blog.techbridge.cc/2017/07/15/javascript-event-propagation/)
+相關學習資源：
+
+1. [輕鬆理解 Ajax 與跨來源請求](https://blog.techbridge.cc/2017/05/20/api-ajax-cors-and-jsonp/)
+2. [DOM 的事件傳遞機制：捕獲與冒泡](https://blog.techbridge.cc/2017/07/15/javascript-event-propagation/)
+3. [RESTful API Design by TritonHo](https://github.com/TritonHo/slides/blob/master/Taipei%202016-04%20talk/RESTful%20API%20Design-tw-2.1.pdf)
 
 
 [HW4 作業連結](/homeworks/week4)
@@ -138,6 +142,11 @@ HTML 的部分就簡單帶過幾個常見的 tag，帶到 head 的一些屬性�
 前端基礎打得差不多以後，就要進入後端的課程，這次課程會以 PHP 為主要的語言，Node.js 為輔助。
 
 這週的課程會講解 PHP 基本觀念、語法，並且教大家安裝設定 MySQL，寫出簡單的 CRUD 應用。
+
+相關學習資源：
+
+1. [第一正規化(First Normal Form, 1NF)](https://matthung0807.blogspot.com/2017/11/first-normal-form-1nf.html)
+2. 
 
 [HW5 作業連結](/homeworks/week5)
 
@@ -175,6 +184,8 @@ HTML 的部分就簡單帶過幾個常見的 tag，帶到 head 的一些屬性�
 
 版面的部分則利用 Bootstrap 搭配 Bootswatch 讓介面變得美觀。利用網格系統實作 RWD。
 
+也會講到 Promise 與 Fetch，帶大家認識比較新的 Web API。
+
 [HW7 作業連結](/homeworks/week7)
 
 #### 目標：
@@ -185,6 +196,8 @@ HTML 的部分就簡單帶過幾個常見的 tag，帶到 head 的一些屬性�
 - [ ] 知道什麼是 Bootstrap
 - [ ] 知道 Bootstrap 原理及如何應用
 - [ ] 知道什麼是網格系統以及如何應用在 RWD
+- [ ] 知道什麼是 Promise
+- [ ] 知道如何使用 Fetch
 
 ### 第八週（10/22 ~ 10/28）：後端基礎（下）
 
@@ -193,6 +206,26 @@ HTML 的部分就簡單帶過幾個常見的 tag，帶到 head 的一些屬性�
 也會讓大家購買自己的網域，理解如何將網域以及主機串連起來，讓大家可以連線到你的網站。
 
 在這個章節也會讓大家理解後端基本架構（NAT、Load balancer、DB replication 等等）
+
+最後也會補齊跟資料庫的一些知識，像是 ACID、Transaction、View 以及 Stored procedure。
+
+這邊有一份參考某間公司面試考題的[綜合能力測驗](http://mentor-program.co/huli/game/index.php)，還滿有趣的，主要是測驗前八週的基礎，如果你前八週都 ok 的話，相信你一定能夠破關！
+
+這週也要特別感謝 [gandi](https://www.gandi.net/) 連續兩期全額贊助了學生購買網域的費用，在這邊特此感謝。
+
+相關學習資源：
+
+1. [MySQL 超新手入門（11）Views](http://www.codedata.com.tw/database/mysql-tutorial-11-views/)
+2. [MySQL Views](http://www.mysqltutorial.org/mysql-views-tutorial.aspx)
+3. [MySQL 超新手入門（13）Stored Routines 入門](http://www.codedata.com.tw/database/mysql-tutorial-13-stored-routines/)
+4. [只要說「我要下午茶！」——什麼是資料庫預存程序？](http://www.newtype.com.tw/aw/Article_ShareDetail.aspx?UniqueID=3)
+5. [MySQL Stored Procedure](http://www.mysqltutorial.org/mysql-stored-procedure-tutorial.aspx)
+6. [MySQL 超新手入門（16）Triggers](http://www.codedata.com.tw/database/mysql-tutorial-16-triggers/)
+7. [MySQL Triggers](http://www.mysqltutorial.org/mysql-triggers.aspx)
+8. [跟 Trigger 與 View 相關的簡報 by TritonHo](https://github.com/TritonHo/slides/blob/master/internal-talk/internal_talk1.pdf)
+9. [跟 ACID 有關的簡報 by TritonHo](https://github.com/TritonHo/slides/blob/master/Taipei%202018-06%20talk/lesson0.pdf)
+10. [MySQL CREATE INDEX](http://www.mysqltutorial.org/mysql-index/mysql-create-index/)
+11. Stored procedure 相關討論：[討論一](https://www.facebook.com/groups/616369245163622/permalink/1315254285275111/)、[討論二](https://www.facebook.com/groups/616369245163622/permalink/1316314398502433/)、[討論三](https://www.facebook.com/groups/616369245163622/permalink/1315406481926558/)、[討論四](https://www.facebook.com/yftzeng.tw/posts/10209307179835921)
 
 [HW8 作業連結](/homeworks/week8)
 
@@ -207,6 +240,9 @@ HTML 的部分就簡單帶過幾個常見的 tag，帶到 head 的一些屬性�
 - [ ] 知道什麼是 No SQL
 - [ ] 知道什麼是 Transaction 與 lock
 - [ ] 知道資料庫的 ACID
+- [ ] 知道什麼是資料庫的 View
+- [ ] 知道什麼是 Stored procedure
+- [ ] 知道資料庫的 Trigger 以及使用時機
 
 ### 第九週（10/29 ~ 11/04）：前端中階（上）
 
@@ -216,7 +252,11 @@ HTML 的部分就簡單帶過幾個常見的 tag，帶到 head 的一些屬性�
 
 除此之外，這週也會介紹到基本的資料結構 stack 與 queue，JavaScript 的 Event Loop 機制以及 Cache 相關的說明。
 
+這週的第一個重點是 CSS 預處理器，第二個重點就是 JavaScript 的一些重要基礎：什麼是 this、execution context、prototype 等等。
+
 [HW9 作業連結](/homeworks/week9)
+
+延伸閱讀：[該來理解 JavaScript 的原型鍊了](https://blog.techbridge.cc/2017/04/22/javascript-prototype/)、[解读ECMAScript[1]——执行环境、作用域及闭包](http://www.cnblogs.com/leoo2sk/archive/2010/12/19/ecmascript-scope.html)、[JS 作用域](https://github.com/nightn/front-end-plan/blob/master/js/js-scope.md)
 
 #### 目標：
 
@@ -228,6 +268,7 @@ HTML 的部分就簡單帶過幾個常見的 tag，帶到 head 的一些屬性�
 - [ ] 知道什麼是 Queue
 - [ ] 知道 Event Loop 的運作方式
 - [ ] 知道 CSS Selector 權重的計算方式
+- [ ] 對 this、exectuion context、prototype 有最基礎的理解
 
 ### 第十週（11/05 ~ 11/11）：前端中階（下）
 
@@ -235,7 +276,7 @@ HTML 的部分就簡單帶過幾個常見的 tag，帶到 head 的一些屬性�
 
 也會講到 Webpack 誕生的理由以及模組化的 JavaScript 開發，讓學生理解為何需要使用 Webpack。
 
-除此之外也會講到一些與 CSS 相關的優化小技巧，例如說針對圖片做優化的 CSS Sprites 或是 Data URI 等等。
+除此之外也會講到一些與 CSS 相關的優化小技巧，例如說針對圖片做優化的 CSS Sprites 或是 Data URI，或是 JavaScript 與 CSS 的 uglify、minify 等等。
 
 最後也會用跟以往不太一樣的模式，做出一個簡單的 todo list。
 
