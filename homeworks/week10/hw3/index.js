@@ -3,10 +3,10 @@ const ul = document.querySelector(".list-group");
 const todoInput = document.querySelector('.form-control');
 var editTimes = 0;
 var list = [];
+
 container.addEventListener('click', (e) => {
     if (e.target.className === 'btn btn-info') {
         if (todoInput.value == "") return;
-        console.log(list);
         addTodo(todoInput.value);
         render();
         todoInput.value = "";
@@ -61,7 +61,6 @@ var addTodo = (todo) => {
 var render = () => {
     ul.innerHTML = "";
     for (var i = 0; i < list.length; i++) {
-        console.log(list[i]);
         ul.innerHTML += `
         <li class = "list-group-item d-flex justify-content-between align-items-center" >
             <div>
