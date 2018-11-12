@@ -1,0 +1,125 @@
+$rectangleFirst:#ffe180;
+$rectangleTwo:#3f5d45;
+
+* {
+    font-family: "微軟正黑體";
+}
+
+@mixin border {
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+}
+
+@mixin background {
+    background-size: cover;
+    background-position: center center;
+
+}
+
+@mixin imgInformations {
+    position: absolute;
+    bottom: 50%;
+    top: 50%;
+    z-index: 10;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    transform: translateY(-50%);
+    writing-mode: vertical-lr;
+    // color: $primary;
+    height: 150px;
+    font-size: 24px;
+    width: 24px;
+    letter-spacing: 10px;
+
+}
+
+.header {
+    .header-image {
+        background-image: url("./helpers/img/header.jpg");
+        height: 496px;
+        @include background();
+    }
+
+    .rectangles {
+        margin: -100px;
+
+    }
+
+    .rectangle1 {
+        background-image: url("./helpers/img/food-photographer-jennifer-pallian-137621-unsplash.jpg");
+        @include background();
+    }
+
+    .rectangle2 {
+        background-image: url("./helpers/img/food-photographer-jennifer-pallian-306919-unsplash.jpg");
+        @include background();
+    }
+
+    .rectangle3 {
+        background-image: url("./helpers/img/food-photographer-jennifer-pallian-306895-unsplash.jpg");
+        @include background();
+    }
+
+    .rec-border {
+        border-right: 1px solid white;
+        border-left: 1px solid white;
+    }
+
+    .rectangle-height {
+        height: 200px;
+        position: relative;
+    }
+
+    .shadow1 {
+        position: absolute;
+        top: 0px;
+        height: 200px;
+        background-color: $rectangleFirst;
+        background-color: rgba(255, 225, 128, 0.5) !important;
+        background-color: $rectangleFirst;
+        filter: Alpha(opacity=50);
+    }
+
+    .shadow2 {
+        position: absolute;
+        top: 0px;
+        height: 200px;
+        z-index: 5;
+        transition: 0.3s ease;
+        background-color: rgba(63, 93, 69, 0.5) !important;
+        background-color: $rectangleTwo;
+        filter: Alpha(opacity=50);
+        cursor: pointer;
+    }
+
+    .shadow2:hover {
+        background-color: rgba(255, 225, 128, 0.5) !important;
+        background-color: $rectangleFirst;
+        // color: $rectangleFirst;
+    }
+
+    .shadow2:hover .imgInfo {
+        color: $rectangleTwo;
+    }
+
+    // .shadow2:hover {
+    //     background-color: $rectangleFirst;
+    //     // color: $rectangleFirst;
+    // }
+
+    .imgInfo {
+        @include imgInformations();
+        font-weight: 800;
+    }
+
+
+
+    .firstColor {
+        // color: $primary;
+    }
+
+    .secondColor {
+        color: white;
+    }
+}
