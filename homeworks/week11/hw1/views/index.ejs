@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Board</title>
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+    <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">   
+</head>
+<body>
+    <div class="container-fluid px-0">
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        <% if((user.user_id)!==undefined){
+        console.log(user)%>
+        <div class="mainInput">
+            <form action="../app.js" method="post">
+                <div class="nickname">
+                    <%= user.nickname%>
+                    <span><a href="logout.php">登出</a></span>
+                </div>
+                <textarea class="content" name="content" placeholder="留言內容" cols="50" rows="10" required></textarea>
+                <input type="hidden" name="parent_id" value="0" />
+                <input type="submit" value="送 出" class="parentBtn" />
+            </form>
+        </div>      
+        <%}else{
+        console.log(user)%>
+        <!-- 0. 主留言輸入框 -->
+        <div class="d-flex flex-end row mx-0 mr-3">
+        <input class="remindLogin" type="button" value="登入" onclick="location.href='/login'" />
+        </div>
+        <% }%>
+
+        <% console.log(cmmt[0].subCmmt[0]) 
+        for(let i=0;i<cmmt.length;i++){
+        console.log(cmmt[i].nickname)
+        %>
+        <div class="mainMessage">
+            <div class="nickname">
+            <%= cmmt[i].nickname%>
+            </div>
+            <div class="time">
+            <%= cmmt[i].time%>
+            </div>
+            <div class="edit_delete">
+            <%# 判斷是否可以可以編輯留言 %>
+            <% if(cmmt[i].user_id===user.user_id){%>
+                <span class="cmmt__edit"><i class="fas fa-pen"></i></span><span class="cmmt__delete"><i class="fas fa-trash-alt"></i></span>
+            <%}%>
+            </div>
+            
+            <%# if(sameuser) end%>
+            <hr>
+            <div class="content">
+            <%= cmmt[i].content %>
+            </div>
+            <div class="cmmt__id">
+            <%= cmmt[i].cmmt_id %>
+            </div>
+
+            <% for(var j=0; j<cmmt[i].subCmmt.length; j++){ 
+              if(cmmt[i].subCmmt[j].parent_id === cmmt[i].cmmt_id){
+            %>
+            <div class="sub-cmmt <% if(cmmt[i].subCmmt[j].user_id === cmmt[i].user_id){ %>addColor<% } %>">
+                <div class="nickname">
+                    <%= cmmt[i].subCmmt[j].nickname %>
+                </div>
+                <div class="time">
+                    <%= cmmt[i].subCmmt[j].time %>
+                </div>
+                <div class="edit_delete">
+                    <% if(cmmt[i].subCmmt[j].user_id === user.user_id){ %>
+                    <span class="cmmt__edit"><i class="fas fa-pen"></i></span><span class="cmmt__delete"><i class="fas fa-trash-alt"></i></span>
+                    <% } %>
+                </div>
+                <hr>
+                <div class="content">
+                    <%= cmmt[i].subCmmt[j].content %>
+                </div>
+                <div class="cmmt__id">
+                    <%= cmmt[i].subCmmt[j].cmmt__id %>
+                </div>
+            <% } %>
+            </div>
+            <%} %>
+            
+
+
+            
+            
+            <div class="sub-cmmt">
+            <% if(user.user_id == undefined){ %>
+                <a class="warn_login" onclick="location.href='login.php'">
+                    登入以發表回應
+                </a>
+            </div>
+            <%}else{%>
+
+                <div class="box-collapse">回應▶</div>
+                <form action='../app.js' method='post' style='display: none'>
+                    <%=user.nickname %>
+                    <span><a href="logout.php" class="logoutBtn">登出</a></span>
+                    <textarea class="content" name="content" placeholder="留言內容" cols="40" rows="5" required></textarea>
+                    <input type="hidden" name="parent_id" value=<%= cmmt[i].cmmt_id %> />
+                    <input type="submit" value="送 出" class="childBtn" />
+                </form>
+
+            </div>
+            <%}%>
+        </div>
+        <% } %>
+    </div>
+    <%  
+       
+        var prevPageDisable = '',
+        prevPageLink = '/pages/'+ (currentPage - 1),
+        nextPageDisable = '',
+        nextPageLink = '/pages/'+ (currentPage + 1);
+        if(currentPage === 1){
+            prevPageDisable = 'disabled';
+            prevPageLink = '#';
+        }
+        // 如果是最後一頁的話
+        if(currentPage === totalPages){
+            nextPageDisable = 'disabled';
+            nextPageLink = '#';
+        }  
+    %>
+
+
+    <div class="row justify-content-center mt-5 mx-0">
+        <ul class="pageList justify-content-center d-flex">
+            <%# 假使為第一個頁，則前一頁會失效 %>
+            <li class="pageItem <%= prevPageDisable %>">
+                <a class="page-link" href="<%= prevPageLink %>" aria-label="Previous" tabindex="-1">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+
+            <%# 顯示個頁的連結，但是不能按自己頁，會失效，因為頁數很多，所以這邊跑for %>
+            <% for(let i=1;i<=totalPages;i++){ %>
+            <li class="pageItem <% if(i===currentPage){ %>disabled<%}%>"></li>
+                <a class="page-link" href="/pages/<%= i %>"><%= i %></a>
+            <li>
+            <% } %>
+
+            <%# 假使為最後一頁，則不能在點下一頁了 %>
+            <li class="pageItem <%= nextPageDisable %>">
+                <a class="page-link" href="<%= nextPageLink %>" aria-label="Previous" tabindex="-1">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>        
+        </ul>
+    
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>
