@@ -1,0 +1,46 @@
+.container {
+  margin: 0 auto;
+  width: 960px;
+  text-align: center;
+  /* background-color: red; */
+}
+
+
+.board {
+  margin: 0 auto;
+  width: 800px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  /* background-color: yellow; */
+}
+
+.box {
+  width: 40px;
+  height: 40px;
+  background-color: #c39d6d;
+  display: inline-block;
+  border: 0.5px solid black;
+  cursor: pointer;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  /*    background-color:black; */
+}
+
+.black {
+  background-color: black;
+}
+
+.white {
+  background-color: white;
+}
+
+p {
+  width: 200px;
+  height: 50px;
+  /* background-color: red; */
+  margin: 0 auto;
+}

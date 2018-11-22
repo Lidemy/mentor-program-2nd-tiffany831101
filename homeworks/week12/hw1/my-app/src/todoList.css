@@ -34,9 +34,18 @@
 
 .todoListMain .theList li:hover {
     background-color: lightcoral;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 ul.theList {
     padding: 0px;
+}
+
+.delete {
+    float: right;
+    cursor: pointer;
+    background-color: bisque;
+    color: #333;
+    border: none;
+
 }
