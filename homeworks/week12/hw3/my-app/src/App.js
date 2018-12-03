@@ -4,6 +4,8 @@ import axios from "axios";
 
 class Post extends Component {
   constructor(props) {
+    console.log(props);
+    // {id: 1}你按哪個就會顯示他的id
     super(props);
     this.state = {
       post: {},
@@ -31,6 +33,7 @@ class Post extends Component {
 }
 class Home extends Component {
   constructor(props) {
+    console.log(props)
     super(props);
     this.state = {
       posts: [],
@@ -43,7 +46,11 @@ class Home extends Component {
       this.setState({
         posts: response.data,
       })
+
+
     })
+
+
   }
 
   handleClick() {
@@ -55,9 +62,10 @@ class Home extends Component {
 
   render() {
     const { posts, postId } = this.state
+    console.log(posts);
     return (
       <div>
-        <h2>
+        <h2 className="mt-5">
           {postId && <button type="button" className="btn btn-primary" onClick={this.handleClick}>Back</button>}
           Blog Posts</h2>
         {postId && <Post id={postId} />}
@@ -125,6 +133,7 @@ class App extends Component {
 
   render() {
     const { tab } = this.state;
+    // console.log(this.state.tab);
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
