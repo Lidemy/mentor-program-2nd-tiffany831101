@@ -3,6 +3,7 @@ import './App.css';
 import Post from "./Post";
 import MyForm from "./GetPost";
 import Header from "./Header";
+import MiddlePost from "./MiddlePost";
 import axios from "axios";
 import Nav from "./Nav"
 import Banner from "./Banner";
@@ -49,7 +50,7 @@ class Home extends Component {
           !postId &&
           <div className="mx-0 mt-3 row d-flex flex-wrap justify-content-between">
             {posts.map(post => {
-              if (post.id < 4) {
+              if (post.id < 6 && post.id % 4 == 1) {
                 return (
                   <div key={post.id} className="col-lg-4 col-md-6 col-12">
                     <div className="post__image">
@@ -77,8 +78,44 @@ class Home extends Component {
                     {/* 作者 */}
                   </div>
                 )
+              } else if (post.id == 2) {
+                return (
+                  <div className="col-lg-4 col-md-4 col-12">
+                    {posts.map(post => {
+                      if (post.id < 6 && post.id % 4 !== 1) {
+                        // 跑2 3 4 的迴圈，外面id=3,4的就不跑外部迴圈
+                        return (
+                          <div className="middle__box d-flex mb-2">
+                            <div className="post__image col-lg-6 col-md-6 col-4">
+                              <img src="https://images.pexels.com/photos/1059116/pexels-photo-1059116.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350" className="img-fluid" alt="Responsive image"></img>
+                            </div>
+                            <div className="col-lg-6 col-md-6 col-6">
+                              <div className="post__title text-center">
 
+                                <Link to={`/posts/${post.id}`}>
+                                  {post.title}
+                                </Link>
+                              </div>
 
+                              <div className="post__body">
+                                <h4 className="card-title text-white text-center mb-0">
+                                  <Link to={`/posts/${post.id}`}>
+                                    {post.body}
+                                  </Link></h4>
+                                <p className="post__author text-center">
+                                  <Link to={`/posts/${post.id}`}>
+                                    {post.author}
+                                  </Link></p>
+                              </div>
+                            </div>
+                          </div>)
+
+                      }
+
+                    })}
+
+                  </div>
+                )
               }
             })}
           </div>

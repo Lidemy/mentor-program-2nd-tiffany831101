@@ -202,3 +202,8 @@ h3.nav__title {
 a {
   cursor: pointer;
 }
+
+.middle__box img {
+  width: 100%;
+  height: calc(width);
+}

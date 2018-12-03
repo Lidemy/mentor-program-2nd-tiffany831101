@@ -12,7 +12,7 @@ class PostBottom extends React.Component {
         console.log(postArr);
         return (
             <div>
-                <div className="container-fluid mt-5 d-flex justify-content-between">
+                <div className="container-fluid mt-5 d-flex justify-content-between flex-wrap">
                     <div className="col-lg-8">
                         {postArr.map((p) => {
                             if (p.id > 3) {
@@ -51,7 +51,7 @@ class PostBottom extends React.Component {
                         })}
                     </div>
 
-                    <div className="col-lg-4">
+                    <div className="col-lg-4 col-md-12 col-12">
                         <div className="bottom__right__title text-center">
                             <h5 className="mt-3 py-4">Popular on Medium</h5>
                         </div>

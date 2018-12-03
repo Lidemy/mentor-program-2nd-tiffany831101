@@ -23,11 +23,11 @@ class Banner extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="mt-5 d-flex justify-content-between post__bottom__intro col-lg-8 col-md-12 py-3">
+                <div className="mt-5 d-flex justify-content-between post__bottom__intro col-lg-8 col-md-12 py-3 flex-wrap">
                     <div className="col-lg-6 col-md-6 col-12">
                         <h5>Feature For Members</h5>
                     </div>
-                    <div className="col-lg-2 col-md-2 col-12">
+                    <div className="col-lg-2 col-md-12 col-12">
                         <p>More></p>
                     </div>
                 </div>
